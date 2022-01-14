@@ -82,7 +82,7 @@ public final class ModificationDate {
     return mostRecent(cqModified, resourceModified);
   }
 
-  @SuppressWarnings("null")
+  @SuppressWarnings({ "null", "java:S2589" }) // extra null checks for backward compatibility
   private static Date getResourceMetadataModificationTime(Resource resource) {
     ResourceMetadata metadata = resource.getResourceMetadata();
     if (metadata != null) {
