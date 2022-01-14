@@ -19,6 +19,7 @@
  */
 package io.wcm.wcm.commons.contenttype;
 
+import java.util.Collections;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -168,7 +169,7 @@ public final class FileExtension {
    */
   @Deprecated
   public static @NotNull Set<String> getImageFileExtensions() {
-    return IMAGE_FILE_EXTENSIONS;
+    return Collections.unmodifiableSet(IMAGE_FILE_EXTENSIONS);
   }
 
   /**
@@ -191,7 +192,7 @@ public final class FileExtension {
    */
   @Deprecated
   public static @NotNull Set<String> getFlashFileExtensions() {
-    return FLASH_FILE_EXTENSIONS;
+    return Collections.unmodifiableSet(FLASH_FILE_EXTENSIONS);
   }
 
 }

@@ -50,7 +50,7 @@ public class BundleInfoServiceImpl implements BundleInfoService {
   public @NotNull Collection<BundleInfo> getBundles() {
     return Arrays.stream(bundleContext.getBundles())
         .map(bundle -> (BundleInfo)new BundleInfoImpl(bundle))
-        .collect(Collectors.toCollection(() -> new TreeSet<BundleInfo>()));
+        .collect(Collectors.toCollection(TreeSet::new));
   }
 
 }

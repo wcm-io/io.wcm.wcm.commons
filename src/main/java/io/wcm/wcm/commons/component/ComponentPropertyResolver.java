@@ -189,7 +189,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
     return StringUtils.isNotEmpty(resource.getResourceType());
   }
 
-  @SuppressWarnings("null")
+  @SuppressWarnings({ "null", "java:S2589" }) // extra null checks for backward compatibility
   private static @Nullable Resource getResourceWithResourceType(@Nullable Resource resource) {
     if (resource == null) {
       return null;
@@ -370,6 +370,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
     return result;
   }
 
+  @SuppressWarnings("PMD.ReturnEmptyCollectionRatherThanNull")
   private @Nullable Collection<Resource> getContentPolicyResources(@NotNull String name) {
     if (contentPolicyResolution == ComponentPropertyResolution.IGNORE || resource == null) {
       return null;
