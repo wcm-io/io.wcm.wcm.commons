@@ -37,9 +37,8 @@ import org.junit.jupiter.api.Test;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.components.ComponentContext;
 import com.day.cq.wcm.commons.WCMUtils;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSortedMap;
 
+import io.wcm.sling.commons.resource.ImmutableValueMap;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 
 abstract class AbstractComponentPropertyResolverResourcesTest {
@@ -196,14 +195,14 @@ abstract class AbstractComponentPropertyResolverResourcesTest {
   @Test
   void testPageAndPolicyAndComponent_Inheritance_ComponentContext() {
     context.contentPolicyMapping("app1/components/comp1",
-        "node2", ImmutableSortedMap.of(
-            "item2", ImmutableMap.of()),
-        "node5", ImmutableSortedMap.of(
-            "item5", ImmutableMap.of()));
+        "node2", ImmutableValueMap.of(
+            "item2", ImmutableValueMap.of()),
+        "node5", ImmutableValueMap.of(
+            "item5", ImmutableValueMap.of()));
     context.contentPolicyMapping("app1/components/comp2",
-        "node6", ImmutableSortedMap.of(
-            "item6", ImmutableMap.of(),
-            "item7", ImmutableMap.of()));
+        "node6", ImmutableValueMap.of(
+            "item6", ImmutableValueMap.of(),
+            "item7", ImmutableValueMap.of()));
 
     Page page1 = context.create().page("/content/page1");
     context.create().resource(page1, "node1/item1");
@@ -243,9 +242,9 @@ abstract class AbstractComponentPropertyResolverResourcesTest {
   @Test
   void testContentPolicy() {
     context.contentPolicyMapping("app1/components/comp1",
-        "node1", ImmutableSortedMap.of(
-            "item1", ImmutableMap.of(),
-            "item2", ImmutableMap.of()));
+        "node1", ImmutableValueMap.of(
+            "item1", ImmutableValueMap.of(),
+            "item2", ImmutableValueMap.of()));
 
     Page page = context.create().page("/content/page1");
     Resource resource = context.create().resource(page, "r1",

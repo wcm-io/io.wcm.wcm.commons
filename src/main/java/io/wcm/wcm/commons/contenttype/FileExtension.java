@@ -27,8 +27,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
-import com.google.common.collect.ImmutableSet;
-
 /**
  * Frequently used file extensions.
  */
@@ -134,7 +132,7 @@ public final class FileExtension {
   /**
    * all file extensions that will be displayed by an image tag
    */
-  private static final Set<String> IMAGE_FILE_EXTENSIONS = ImmutableSet.of(
+  private static final Set<String> IMAGE_FILE_EXTENSIONS = Set.of(
       GIF,
       JPEG,
       PNG,
@@ -144,7 +142,7 @@ public final class FileExtension {
   /**
    * all file extensions that will be displayed as flash
    */
-  private static final Set<String> FLASH_FILE_EXTENSIONS = ImmutableSet.of(
+  private static final Set<String> FLASH_FILE_EXTENSIONS = Set.of(
       SWF
       );
 

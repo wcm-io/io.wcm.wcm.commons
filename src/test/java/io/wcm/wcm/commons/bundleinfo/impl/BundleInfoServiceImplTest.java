@@ -43,8 +43,6 @@ import org.mockito.quality.Strictness;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
-import com.google.common.collect.ImmutableList;
-
 import io.wcm.wcm.commons.bundleinfo.BundleInfo;
 import io.wcm.wcm.commons.bundleinfo.BundleInfoService;
 import io.wcm.wcm.commons.bundleinfo.BundleState;
@@ -79,7 +77,7 @@ class BundleInfoServiceImplTest {
         bundle("minimalBundle2", BundleState.RESOLVED),
         bundle("fragmentBundle3", BundleState.INSTALLED, BUNDLE_NAME, "Fragment 1", BUNDLE_VERSION, "1.0", FRAGMENT_HOST, "fragment"));
 
-    List<BundleInfo> result = ImmutableList.copyOf(underTest.getBundles());
+    List<BundleInfo> result = List.copyOf(underTest.getBundles());
     assertEquals(3, result.size());
 
     BundleInfo bundle1 = result.get(0);

@@ -30,6 +30,9 @@
       <action type="update" dev="sseifert">
         Structure Element template: Switch to coralui3 client library.
       </action>
+      <action type="update" dev="sseifert">
+        Eliminate dependency to Guava.
+      </action>
     </release>
 
     <release version="1.9.0" date="2021-10-28">

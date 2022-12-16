@@ -20,7 +20,9 @@
 package io.wcm.wcm.commons.component;
 
 import java.util.Collection;
+import java.util.Map;
 
+import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
@@ -40,8 +42,6 @@ import com.day.cq.wcm.api.components.ComponentContext;
 import com.day.cq.wcm.api.components.ComponentManager;
 import com.day.cq.wcm.api.policies.ContentPolicy;
 import com.day.cq.wcm.api.policies.ContentPolicyManager;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 
 import io.wcm.sling.commons.adapter.AdaptTo;
 
@@ -389,7 +389,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
     if (parent == null) {
       return null;
     }
-    Collection<Resource> children = ImmutableList.copyOf(parent.getChildren());
+    Collection<Resource> children = IterableUtils.toList(parent.getChildren());
     if (children.isEmpty()) {
       return null;
     }
@@ -420,7 +420,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
         && !initComponentsResourceResolverFailed) {
       try {
         componentsResourceResolver = resourceResolverFactory.getServiceResourceResolver(
-            ImmutableMap.of(ResourceResolverFactory.SUBSERVICE, SERVICEUSER_SUBSERVICE));
+            Map.of(ResourceResolverFactory.SUBSERVICE, SERVICEUSER_SUBSERVICE));
       }
       catch (LoginException ex) {
         initComponentsResourceResolverFailed = true;
