@@ -26,6 +26,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Set;
 
@@ -39,15 +40,13 @@ import org.mockito.quality.Strictness;
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 
-import com.google.common.collect.ImmutableSet;
-
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 @SuppressWarnings("deprecation")
 class RunModeTest {
 
-  private static final Set<String> AUTHOR_RUNMODES = ImmutableSet.of(RunMode.AUTHOR);
-  private static final Set<String> PUBLISH_RUNMODES = ImmutableSet.of(RunMode.PUBLISH, "anotherRunMode");
+  private static final Set<String> AUTHOR_RUNMODES = Set.of(RunMode.AUTHOR);
+  private static final Set<String> PUBLISH_RUNMODES = Set.of(RunMode.PUBLISH, "anotherRunMode");
 
   @Mock
   private ComponentContext componentContext;
@@ -64,7 +63,7 @@ class RunModeTest {
 
   @Test
   void testIs() {
-    Set<String> runModes = ImmutableSet.of("mode1", "mode2");
+    Set<String> runModes = Set.of("mode1", "mode2");
     assertTrue(RunMode.is(runModes, "mode1"));
     assertTrue(RunMode.is(runModes, "mode2"));
     assertFalse(RunMode.is(runModes, "mode3"));
@@ -72,7 +71,7 @@ class RunModeTest {
 
   @Test
   void testIsEmptySet() {
-    Set<String> runModes = ImmutableSet.of();
+    Set<String> runModes = Collections.emptySet();
     assertFalse(RunMode.is(runModes, "mode1"));
     assertFalse(RunMode.is(runModes, "mode2"));
     assertFalse(RunMode.is(runModes, "mode3"));
@@ -88,7 +87,7 @@ class RunModeTest {
 
   @Test
   void testIsInvalidParams() {
-    Set<String> runModes = ImmutableSet.of("mode1", "mode2");
+    Set<String> runModes = Set.of("mode1", "mode2");
     assertFalse(RunMode.is(runModes));
     assertFalse(RunMode.is(runModes, (String[])null));
     assertFalse(RunMode.is(runModes, (String)null));
@@ -96,13 +95,13 @@ class RunModeTest {
 
   @Test
   void testIsAuthor() {
-    Set<String> runModes = ImmutableSet.of("mode1", "author");
+    Set<String> runModes = Set.of("mode1", "author");
     assertTrue(RunMode.isAuthor(runModes));
   }
 
   @Test
   void testIsPublish() {
-    Set<String> runModes = ImmutableSet.of("publish");
+    Set<String> runModes = Set.of("publish");
     assertTrue(RunMode.isPublish(runModes));
   }
 

@@ -65,7 +65,7 @@ public final class RunMode {
   public static boolean is(Set<String> runModes, String... expectedRunModes) {
     if (runModes != null && expectedRunModes != null) {
       for (String expectedRunMode : expectedRunModes) {
-        if (runModes.contains(expectedRunMode)) {
+        if (expectedRunMode != null && runModes.contains(expectedRunMode)) {
           return true;
         }
       }
