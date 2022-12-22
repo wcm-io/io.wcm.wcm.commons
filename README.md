@@ -7,7 +7,7 @@
 Common WCM utility and helper functions.
 
 Documentation: https://wcm.io/wcm/commons/<br/>
-Issues: https://wcm-io.atlassian.net/browse/WWCM<br/>
+Issues: https://github.com/wcm-io/io.wcm.wcm.commons/issues<br/>
 Wiki: https://wcm-io.atlassian.net/wiki/<br/>
 Continuous Integration: https://github.com/wcm-io/io.wcm.wcm.commons/actions<br/>
 Commercial support: https://wcm.io/commercial-support.html
