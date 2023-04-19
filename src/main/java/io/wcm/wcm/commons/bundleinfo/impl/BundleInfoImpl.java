@@ -38,7 +38,7 @@ class BundleInfoImpl implements BundleInfo {
 
   private final String symbolicName;
   private final Bundle bundle;
-  private final Dictionary headers;
+  private final Dictionary<String, String> headers;
   private final BundleState state;
 
   BundleInfoImpl(Bundle bundle) {
@@ -65,12 +65,12 @@ class BundleInfoImpl implements BundleInfo {
 
   @Override
   public @NotNull String getName() {
-    return StringUtils.defaultString((String)headers.get(Constants.BUNDLE_NAME), getSymbolicName());
+    return StringUtils.defaultString(headers.get(Constants.BUNDLE_NAME), getSymbolicName());
   }
 
   @Override
   public @NotNull String getVersion() {
-    return StringUtils.defaultString((String)headers.get(Constants.BUNDLE_VERSION));
+    return StringUtils.defaultString(headers.get(Constants.BUNDLE_VERSION));
   }
 
   @Override
@@ -88,7 +88,7 @@ class BundleInfoImpl implements BundleInfo {
 
   @Override
   public boolean isFragment() {
-    String fragmentHost = (String)headers.get(Constants.FRAGMENT_HOST);
+    String fragmentHost = headers.get(Constants.FRAGMENT_HOST);
     return StringUtils.isNotBlank(fragmentHost);
   }
 

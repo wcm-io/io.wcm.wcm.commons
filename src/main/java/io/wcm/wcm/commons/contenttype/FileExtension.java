@@ -19,14 +19,13 @@
  */
 package io.wcm.wcm.commons.contenttype;
 
+import java.util.Collections;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
-
-import com.google.common.collect.ImmutableSet;
 
 /**
  * Frequently used file extensions.
@@ -133,7 +132,7 @@ public final class FileExtension {
   /**
    * all file extensions that will be displayed by an image tag
    */
-  private static final Set<String> IMAGE_FILE_EXTENSIONS = ImmutableSet.of(
+  private static final Set<String> IMAGE_FILE_EXTENSIONS = Set.of(
       GIF,
       JPEG,
       PNG,
@@ -143,7 +142,7 @@ public final class FileExtension {
   /**
    * all file extensions that will be displayed as flash
    */
-  private static final Set<String> FLASH_FILE_EXTENSIONS = ImmutableSet.of(
+  private static final Set<String> FLASH_FILE_EXTENSIONS = Set.of(
       SWF
       );
 
@@ -168,7 +167,7 @@ public final class FileExtension {
    */
   @Deprecated
   public static @NotNull Set<String> getImageFileExtensions() {
-    return IMAGE_FILE_EXTENSIONS;
+    return Collections.unmodifiableSet(IMAGE_FILE_EXTENSIONS);
   }
 
   /**
@@ -191,7 +190,7 @@ public final class FileExtension {
    */
   @Deprecated
   public static @NotNull Set<String> getFlashFileExtensions() {
-    return FLASH_FILE_EXTENSIONS;
+    return Collections.unmodifiableSet(FLASH_FILE_EXTENSIONS);
   }
 
 }

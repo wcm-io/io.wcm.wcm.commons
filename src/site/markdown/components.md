@@ -1,7 +1,7 @@
-## Sightly components
+## Sightly components (deprecated)
 
 
-### wcmInit
+### wcmInit (deprecated)
 
 On the author instance, this component initalizes the edit mode and loads all required client libs. Supports both Touch UI and Classic UI.
 
@@ -41,7 +41,7 @@ Markup for subcomponent:
 ```
 
 
-### page
+### page (deprecated)
 
 Base page component which defines a simplified page properties dialog with only basic features.
 

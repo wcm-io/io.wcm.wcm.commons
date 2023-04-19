@@ -33,8 +33,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.google.common.collect.ImmutableList;
-
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.commons.resource.ImmutableValueMap;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -59,7 +57,7 @@ class VersionInfoTest {
     context.registerService(BundleInfoService.class, bundleInfoService);
     context.registerInjectActivateService(new ComponentPropertyResolverFactoryImpl());
 
-    List<BundleInfo> bundles = ImmutableList.of(
+    List<BundleInfo> bundles = List.of(
         bundle("aaa.bundle1"),
         bundle("aaa.bundle2"),
         bundle("bbb.bundle3"));
@@ -111,7 +109,7 @@ class VersionInfoTest {
   }
 
   private void assertBundles(String... expectedBundles) {
-    List<String> expected = ImmutableList.copyOf(expectedBundles);
+    List<String> expected = List.of(expectedBundles);
 
     VersionInfo underTest = AdaptTo.notNull(context.request(), VersionInfo.class);
     List<String> actual = underTest.getBundles().stream()

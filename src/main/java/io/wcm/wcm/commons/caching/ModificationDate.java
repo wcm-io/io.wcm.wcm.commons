@@ -82,7 +82,7 @@ public final class ModificationDate {
     return mostRecent(cqModified, resourceModified);
   }
 
-  @SuppressWarnings("null")
+  @SuppressWarnings({ "null", "java:S2589" }) // extra null checks for backward compatibility
   private static Date getResourceMetadataModificationTime(Resource resource) {
     ResourceMetadata metadata = resource.getResourceMetadata();
     if (metadata != null) {
@@ -99,6 +99,7 @@ public final class ModificationDate {
    * @param resources multiple resources (typically jcr:content nodes of cq-pages or rendition resources)
    * @return the most recent date (or null if none of the resources has a modification date)
    */
+  @SuppressWarnings("java:S2259") // array itself is marked as NotNull
   public static @Nullable Date mostRecent(@Nullable Resource @NotNull... resources) {
     Date[] dates = new Date[resources.length];
     for (int i = 0; i < resources.length; i++) {
@@ -112,6 +113,7 @@ public final class ModificationDate {
    * @param pages multiple cq pages
    * @return the most recent date (or null if none of the pages has a modification date)
    */
+  @SuppressWarnings("java:S2259") // array itself is marked as NotNull
   public static @Nullable Date mostRecent(@Nullable Page @NotNull... pages) {
     Date[] dates = new Date[pages.length];
     for (int i = 0; i < pages.length; i++) {

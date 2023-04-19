@@ -93,8 +93,7 @@ public final class VersionInfo {
       return true;
     }
     return filterPatterns.stream()
-        .filter(pattern -> pattern.matcher(bundle.getSymbolicName()).matches())
-        .findAny().isPresent();
+        .anyMatch(pattern -> pattern.matcher(bundle.getSymbolicName()).matches());
   }
 
   private Stream<String> getFilterRegex() {

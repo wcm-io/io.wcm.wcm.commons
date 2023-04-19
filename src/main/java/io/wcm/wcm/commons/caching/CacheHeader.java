@@ -19,7 +19,6 @@
  */
 package io.wcm.wcm.commons.caching;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,11 +61,13 @@ public final class CacheHeader {
   static final String HEADER_CACHE_CONTROL = "Cache-Control";
   static final String HEADER_EXPIRES = "Expires";
   static final String HEADER_DISPATCHER = "Dispatcher";
+  static final String NO_CACHE = "no-cache";
 
   /**
    * shared instance of the RFC1123 date format, must not be used directly but only using the synchronized {@link #formatDate(Date)} and
    * {@link #parseDate(String)} methods
    */
+  @SuppressWarnings("java:S2885")
   private static final DateFormat RFC1123_DATE_FORMAT = new SimpleDateFormat(RFC_1123_DATE_PATTERN, Locale.US);
   static {
     // all times are written and parsed in GMT
@@ -94,10 +95,9 @@ public final class CacheHeader {
    * @param response Response
    * @return true if the method send a 304 redirect, so that the caller shouldn't write any output to the response
    *         stream
-   * @throws IOException I/O exception
    */
   public static boolean isNotModified(@NotNull Resource resource,
-      @NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response) throws IOException {
+      @NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response) {
     ResourceModificationDateProvider dateProvider = new ResourceModificationDateProvider(resource);
     return isNotModified(dateProvider, request, response);
   }
@@ -113,10 +113,9 @@ public final class CacheHeader {
    * @param setExpiresHeader Set expires header to -1 to ensure the browser checks for a new version on every request.
    * @return true if the method send a 304 redirect, so that the caller shouldn't write any output to the response
    *         stream
-   * @throws IOException I/O exception
    */
   public static boolean isNotModified(@NotNull Resource resource,
-      @NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response, boolean setExpiresHeader) throws IOException {
+      @NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response, boolean setExpiresHeader) {
     ResourceModificationDateProvider dateProvider = new ResourceModificationDateProvider(resource);
     return isNotModified(dateProvider, request, response, setExpiresHeader);
   }
@@ -134,10 +133,9 @@ public final class CacheHeader {
    * @param response Response
    * @return true if the method send a 304 redirect, so that the caller shouldn't write any output to the response
    *         stream
-   * @throws IOException I/O exception
    */
   public static boolean isNotModified(@NotNull ModificationDateProvider dateProvider,
-      @NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response) throws IOException {
+      @NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response) {
     boolean isAuthor = WCMMode.fromRequest(request) != WCMMode.DISABLED;
     return isNotModified(dateProvider, request, response, isAuthor);
   }
@@ -153,10 +151,9 @@ public final class CacheHeader {
    * @param setExpiresHeader Set expires header to -1 to ensure the browser checks for a new version on every request.
    * @return true if the method send a 304 redirect, so that the caller shouldn't write any output to the response
    *         stream
-   * @throws IOException I/O exception
    */
   public static boolean isNotModified(@NotNull ModificationDateProvider dateProvider,
-      @NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response, boolean setExpiresHeader) throws IOException {
+      @NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response, boolean setExpiresHeader) {
 
     // assume the resource *was* modified until we know better
     boolean isModified = true;
@@ -204,10 +201,10 @@ public final class CacheHeader {
    * @param response Current response
    */
   public static void setNonCachingHeaders(@NotNull HttpServletResponse response) {
-    response.setHeader(HEADER_PRAGMA, "no-cache");
-    response.setHeader(HEADER_CACHE_CONTROL, "no-cache");
+    response.setHeader(HEADER_PRAGMA, NO_CACHE);
+    response.setHeader(HEADER_CACHE_CONTROL, NO_CACHE);
     response.setHeader(HEADER_EXPIRES, "0");
-    response.setHeader(HEADER_DISPATCHER, "no-cache");
+    response.setHeader(HEADER_DISPATCHER, NO_CACHE);
   }
 
   /**

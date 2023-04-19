@@ -65,7 +65,7 @@ public final class RunMode {
   public static boolean is(Set<String> runModes, String... expectedRunModes) {
     if (runModes != null && expectedRunModes != null) {
       for (String expectedRunMode : expectedRunModes) {
-        if (runModes.contains(expectedRunMode)) {
+        if (expectedRunMode != null && runModes.contains(expectedRunMode)) {
           return true;
         }
       }
@@ -133,19 +133,15 @@ public final class RunMode {
     }
     if (!isActive) {
       if (log.isDebugEnabled()) {
-        log.debug("Component '" + name + "' "
-            + "disabled as none of its run modes (" + StringUtils.join(allowedRunModes, ",") + ") "
-            + "are currently active (" + StringUtils.join(runModes, ",") + ")."
-            );
+        log.debug("Component '{}' disabled as none of its run modes ({}) are currently active ({}).",
+            name, StringUtils.join(allowedRunModes, ","), StringUtils.join(runModes, ","));
       }
       componentContext.disableComponent(name);
       result = true;
     }
     else if (log.isDebugEnabled()) {
-      log.debug("Component '" + name + "' "
-          + "enabled as at least one of its run modes (" + StringUtils.join(allowedRunModes, ",") + ") "
-          + "are currently active (" + StringUtils.join(runModes, ",") + ")."
-          );
+      log.debug("Component '{}' enabled as at least one of its run modes ({}) are currently active ({}).",
+          name, StringUtils.join(allowedRunModes, ","), StringUtils.join(runModes, ","));
     }
 
     return result;
