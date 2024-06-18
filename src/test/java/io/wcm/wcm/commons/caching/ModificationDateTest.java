@@ -110,7 +110,7 @@ class ModificationDateTest {
   }
 
   @Test
-  void testMostRecentModificationDateProviderArray() throws Exception {
+  void testMostRecentModificationDateProviderArray() {
     applyPageLastModified(page1, SAMPLE_CALENDAR_1);
     applyPageLastModified(resource2, SAMPLE_CALENDAR_2);
     assertEquals(SAMPLE_CALENDAR_2.getTime(), ModificationDate.mostRecent(

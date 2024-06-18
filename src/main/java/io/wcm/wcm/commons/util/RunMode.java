@@ -84,7 +84,7 @@ public final class RunMode {
    */
   @Deprecated
   public static boolean isAuthor(Set<String> runModes) {
-    return RunMode.is(runModes, AUTHOR);
+    return is(runModes, AUTHOR);
   }
 
   /**
@@ -98,7 +98,7 @@ public final class RunMode {
    */
   @Deprecated
   public static boolean isPublish(Set<String> runModes) {
-    return RunMode.is(runModes, PUBLISH);
+    return is(runModes, PUBLISH);
   }
 
   /**

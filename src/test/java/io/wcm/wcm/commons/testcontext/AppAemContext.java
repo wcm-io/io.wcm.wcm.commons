@@ -23,7 +23,6 @@ import static io.wcm.testing.mock.wcmio.sling.ContextPlugins.WCMIO_SLING;
 
 import java.io.IOException;
 
-import org.apache.sling.api.resource.PersistenceException;
 import org.jetbrains.annotations.NotNull;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -51,7 +50,7 @@ public final class AppAemContext {
    */
   private static final AemContextCallback SETUP_CALLBACK = new AemContextCallback() {
     @Override
-    public void execute(@NotNull AemContext context) throws PersistenceException, IOException {
+    public void execute(@NotNull AemContext context) throws IOException {
 
       // register sling models
       context.addModelsForPackage("io.wcm.wcm.commons");

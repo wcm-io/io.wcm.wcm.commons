@@ -87,7 +87,7 @@ public enum BundleState {
    * @return Bundle state matching state value - or UNKNOWN if no match found
    */
   public static @NotNull BundleState valueOf(int stateValue) {
-    for (BundleState state : BundleState.values()) {
+    for (BundleState state : values()) {
       if (state.stateValue == stateValue) {
         return state;
       }

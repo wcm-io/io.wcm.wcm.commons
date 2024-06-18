@@ -61,9 +61,9 @@ public class InstanceTypeServiceImpl implements InstanceTypeService {
         options = {
             @Option(value = RunMode.AUTHOR, label = "Author"),
             @Option(value = RunMode.PUBLISH, label = "Publish"),
-            @Option(value = InstanceTypeServiceImpl.TYPE_AUTO, label = "Detect automatically (not recommended)")
+            @Option(value = TYPE_AUTO, label = "Detect automatically (not recommended)")
         })
-    String instance_type() default InstanceTypeServiceImpl.TYPE_AUTO;
+    String instance_type() default TYPE_AUTO;
 
   }
 

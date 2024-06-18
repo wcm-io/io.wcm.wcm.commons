@@ -81,7 +81,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testIsNotModified_WithoutIfModifiedSinceHeader_Publish() throws Exception {
+  void testIsNotModified_WithoutIfModifiedSinceHeader_Publish() {
     when(request.getAttribute(WCMMode.REQUEST_ATTRIBUTE_NAME)).thenReturn(WCMMode.DISABLED);
     assertFalse(CacheHeader.isNotModified(resource, request, response));
     verify(response).setHeader(HEADER_LAST_MODIFIED, formatDate(SAMPLE_CALENDAR_1.getTime()));
@@ -89,7 +89,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testIsNotModified_WithoutIfModifiedSinceHeader_Author() throws Exception {
+  void testIsNotModified_WithoutIfModifiedSinceHeader_Author() {
     when(request.getAttribute(WCMMode.REQUEST_ATTRIBUTE_NAME)).thenReturn(WCMMode.EDIT);
     assertFalse(CacheHeader.isNotModified(resource, request, response));
     verify(response).setHeader(HEADER_LAST_MODIFIED, formatDate(SAMPLE_CALENDAR_1.getTime()));
@@ -98,7 +98,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testIsNotModified_WithIfModifiedSinceHeader_Publish() throws Exception {
+  void testIsNotModified_WithIfModifiedSinceHeader_Publish() {
     when(request.getAttribute(WCMMode.REQUEST_ATTRIBUTE_NAME)).thenReturn(WCMMode.DISABLED);
     when(request.getHeader(HEADER_IF_MODIFIED_SINCE)).thenReturn(formatDate(SAMPLE_CALENDAR_2.getTime()));
     assertTrue(CacheHeader.isNotModified(resource, request, response));
@@ -107,7 +107,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testIsNotModified_WithIfModifiedSinceHeader_Author() throws Exception {
+  void testIsNotModified_WithIfModifiedSinceHeader_Author() {
     when(request.getAttribute(WCMMode.REQUEST_ATTRIBUTE_NAME)).thenReturn(WCMMode.EDIT);
     when(request.getHeader(HEADER_IF_MODIFIED_SINCE)).thenReturn(formatDate(SAMPLE_CALENDAR_2.getTime()));
     assertTrue(CacheHeader.isNotModified(resource, request, response));
@@ -116,7 +116,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testSetNonCachingHeaders() throws Exception {
+  void testSetNonCachingHeaders() {
     CacheHeader.setNonCachingHeaders(response);
     verify(response).setHeader(HEADER_PRAGMA, "no-cache");
     verify(response).setHeader(HEADER_CACHE_CONTROL, "no-cache");
