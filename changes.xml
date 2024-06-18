@@ -24,7 +24,7 @@
   <body>
 
     <release version="1.11.0" date="not released">
-      <action type="add" dev="sseifert">
+      <action type="add" dev="sseifert" issue="1">
         Add AemObjectsReflectionToStringBuilder to support reflection-based toString() methods with more compact/human-readable output of AEM-related objects.
       </action>
     </release>
