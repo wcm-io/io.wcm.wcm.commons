@@ -28,14 +28,14 @@ class FileExtensionTest {
 
   @Test
   @SuppressWarnings("deprecation")
-  void testIsImage() throws Exception {
+  void testIsImage() {
     assertTrue(FileExtension.isImage("png"));
     assertFalse(FileExtension.isImage(null));
   }
 
   @Test
   @SuppressWarnings("deprecation")
-  void testIsFlash() throws Exception {
+  void testIsFlash() {
     assertTrue(FileExtension.isFlash("swf"));
     assertFalse(FileExtension.isFlash(null));
   }

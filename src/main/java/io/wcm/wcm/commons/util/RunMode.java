@@ -61,7 +61,7 @@ public final class RunMode {
    *             gets only active if a configuration is available. Such a configuration can be put into the repository
    *             for the specific run mode.
    */
-  @Deprecated
+  @Deprecated(since = "1.0.4")
   public static boolean is(Set<String> runModes, String... expectedRunModes) {
     if (runModes != null && expectedRunModes != null) {
       for (String expectedRunMode : expectedRunModes) {
@@ -82,7 +82,7 @@ public final class RunMode {
    *             gets only active if a configuration is available. Such a configuration can be put into the repository
    *             for the specific run mode.
    */
-  @Deprecated
+  @Deprecated(since = "1.0.4")
   public static boolean isAuthor(Set<String> runModes) {
     return is(runModes, AUTHOR);
   }
@@ -96,7 +96,7 @@ public final class RunMode {
    *             gets only active if a configuration is available. Such a configuration can be put into the repository
    *             for the specific run mode.
    */
-  @Deprecated
+  @Deprecated(since = "1.0.4")
   public static boolean isPublish(Set<String> runModes) {
     return is(runModes, PUBLISH);
   }
@@ -117,7 +117,7 @@ public final class RunMode {
    *             gets only active if a configuration is available. Such a configuration can be put into the repository
    *             for the specific run mode.
    */
-  @Deprecated
+  @Deprecated(since = "1.0.4")
   public static boolean disableIfNoRunModeActive(Set<String> runModes, String[] allowedRunModes,
       ComponentContext componentContext, Logger log) {
 
@@ -162,7 +162,7 @@ public final class RunMode {
    *             gets only active if a configuration is available. Such a configuration can be put into the repository
    *             for the specific run mode.
    */
-  @Deprecated
+  @Deprecated(since = "1.0.4")
   public static boolean disableIfNotAuthor(Set<String> runModes, ComponentContext componentContext, Logger log) {
     return disableIfNoRunModeActive(runModes, new String[] {
         AUTHOR
@@ -184,7 +184,7 @@ public final class RunMode {
    *             gets only active if a configuration is available. Such a configuration can be put into the repository
    *             for the specific run mode.
    */
-  @Deprecated
+  @Deprecated(since = "1.0.4")
   public static boolean disableIfNotPublish(Set<String> runModes, ComponentContext componentContext, Logger log) {
     return disableIfNoRunModeActive(runModes, new String[] {
         PUBLISH
