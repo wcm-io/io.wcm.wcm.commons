@@ -148,7 +148,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
    * @param page Content page
    * @deprecated Please use {@link ComponentPropertyResolverFactory}.
    */
-  @Deprecated
+  @Deprecated(since = "1.6.0")
   public ComponentPropertyResolver(@NotNull Page page) {
     this(page, null);
   }
@@ -158,7 +158,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
    * @param resource Content resource
    * @deprecated Please use {@link ComponentPropertyResolverFactory}.
    */
-  @Deprecated
+  @Deprecated(since = "1.6.0")
   public ComponentPropertyResolver(@NotNull Resource resource) {
     this(resource, null);
   }
@@ -170,7 +170,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
    *          If this is not the case, try to find the closest parent resource which has a resource type.
    * @deprecated Please use {@link ComponentPropertyResolverFactory}.
    */
-  @Deprecated
+  @Deprecated(since = "1.6.0")
   public ComponentPropertyResolver(@NotNull Resource resource, boolean ensureResourceType) {
     this(resource, ensureResourceType, null);
   }
@@ -180,7 +180,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
    * @param wcmComponentContext WCM component context
    * @deprecated Please use {@link ComponentPropertyResolverFactory}.
    */
-  @Deprecated
+  @Deprecated(since = "1.6.0")
   public ComponentPropertyResolver(@NotNull ComponentContext wcmComponentContext) {
     this(wcmComponentContext, null);
   }

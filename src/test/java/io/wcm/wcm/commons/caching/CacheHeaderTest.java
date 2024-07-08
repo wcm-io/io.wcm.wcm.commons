@@ -81,7 +81,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testIsNotModified_WithoutIfModifiedSinceHeader_Publish() throws Exception {
+  void testIsNotModified_WithoutIfModifiedSinceHeader_Publish() {
     when(request.getAttribute(WCMMode.REQUEST_ATTRIBUTE_NAME)).thenReturn(WCMMode.DISABLED);
     assertFalse(CacheHeader.isNotModified(resource, request, response));
     verify(response).setHeader(HEADER_LAST_MODIFIED, formatDate(SAMPLE_CALENDAR_1.getTime()));
@@ -89,7 +89,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testIsNotModified_WithoutIfModifiedSinceHeader_Author() throws Exception {
+  void testIsNotModified_WithoutIfModifiedSinceHeader_Author() {
     when(request.getAttribute(WCMMode.REQUEST_ATTRIBUTE_NAME)).thenReturn(WCMMode.EDIT);
     assertFalse(CacheHeader.isNotModified(resource, request, response));
     verify(response).setHeader(HEADER_LAST_MODIFIED, formatDate(SAMPLE_CALENDAR_1.getTime()));
@@ -98,7 +98,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testIsNotModified_WithIfModifiedSinceHeader_Publish() throws Exception {
+  void testIsNotModified_WithIfModifiedSinceHeader_Publish() {
     when(request.getAttribute(WCMMode.REQUEST_ATTRIBUTE_NAME)).thenReturn(WCMMode.DISABLED);
     when(request.getHeader(HEADER_IF_MODIFIED_SINCE)).thenReturn(formatDate(SAMPLE_CALENDAR_2.getTime()));
     assertTrue(CacheHeader.isNotModified(resource, request, response));
@@ -107,7 +107,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testIsNotModified_WithIfModifiedSinceHeader_Author() throws Exception {
+  void testIsNotModified_WithIfModifiedSinceHeader_Author() {
     when(request.getAttribute(WCMMode.REQUEST_ATTRIBUTE_NAME)).thenReturn(WCMMode.EDIT);
     when(request.getHeader(HEADER_IF_MODIFIED_SINCE)).thenReturn(formatDate(SAMPLE_CALENDAR_2.getTime()));
     assertTrue(CacheHeader.isNotModified(resource, request, response));
@@ -116,7 +116,7 @@ class CacheHeaderTest {
   }
 
   @Test
-  void testSetNonCachingHeaders() throws Exception {
+  void testSetNonCachingHeaders() {
     CacheHeader.setNonCachingHeaders(response);
     verify(response).setHeader(HEADER_PRAGMA, "no-cache");
     verify(response).setHeader(HEADER_CACHE_CONTROL, "no-cache");
@@ -136,23 +136,26 @@ class CacheHeaderTest {
   }
 
   @Test
+  @SuppressWarnings("java:S2699") // validation via doAnswer
   void testSetExpiresSeconds() {
     doAnswer(new ValidateDateHeaderAnswer(200 * DateUtils.MILLIS_PER_SECOND))
-    .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
+        .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
     CacheHeader.setExpiresSeconds(response, 200);
   }
 
   @Test
+  @SuppressWarnings("java:S2699") // validation via doAnswer
   void testSetExpiresHours() {
     doAnswer(new ValidateDateHeaderAnswer(15 * DateUtils.MILLIS_PER_HOUR))
-    .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
+        .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
     CacheHeader.setExpiresHours(response, 15);
   }
 
   @Test
+  @SuppressWarnings("java:S2699") // validation via doAnswer
   void testSetExpiresDays() {
     doAnswer(new ValidateDateHeaderAnswer(20 * DateUtils.MILLIS_PER_DAY))
-    .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
+        .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
     CacheHeader.setExpiresDays(response, 20);
   }
 

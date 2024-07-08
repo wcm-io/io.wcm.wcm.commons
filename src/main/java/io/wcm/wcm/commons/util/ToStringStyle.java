@@ -93,7 +93,7 @@ public final class ToStringStyle {
      * @return the singleton
      */
     private Object readResolve() {
-      return ToStringStyle.SHORT_PREFIX_OMIT_NULL_STYLE;
+      return SHORT_PREFIX_OMIT_NULL_STYLE;
     }
 
   }

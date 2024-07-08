@@ -32,7 +32,7 @@ class ToStringStyleTest {
         "abc", "def"
     }, new StringBuilder("def"));
 
-    assertEquals("ToStringStyleTest.ToStringTester[string=abc,stringArray={abc,def},object=def]", tester.toString());
+    assertEquals("ToStringStyleTest.ToStringTester[object=def,string=abc,stringArray={abc,def}]", tester.toString());
   }
 
   @Test

@@ -153,7 +153,7 @@ public final class FileExtension {
    * @return true if image
    * @deprecated Use <code>io.wcm.handler.media.MediaFileType.isImage</code> instead.
    */
-  @Deprecated
+  @Deprecated(since = "1.5.0")
   public static boolean isImage(@Nullable String fileExtension) {
     if (StringUtils.isEmpty(fileExtension)) {
       return false;
@@ -165,7 +165,7 @@ public final class FileExtension {
    * @return Image file extensions for standard image formats supported by web browsers and AEM Layer implementations.
    * @deprecated Use <code>io.wcm.handler.media.MediaFileType.getImageFileExtensions</code> instead.
    */
-  @Deprecated
+  @Deprecated(since = "1.5.0")
   public static @NotNull Set<String> getImageFileExtensions() {
     return Collections.unmodifiableSet(IMAGE_FILE_EXTENSIONS);
   }
@@ -176,7 +176,7 @@ public final class FileExtension {
    * @return true if flash
    * @deprecated Use <code>io.wcm.handler.media.MediaFileType.isFlash</code> instead.
    */
-  @Deprecated
+  @Deprecated(since = "1.5.0")
   public static boolean isFlash(@Nullable String fileExtension) {
     if (StringUtils.isEmpty(fileExtension)) {
       return false;
@@ -188,7 +188,7 @@ public final class FileExtension {
    * @return Flash file extensions
    * @deprecated Use <code>io.wcm.handler.media.MediaFileType.getFlashFileExtensions</code> instead.
    */
-  @Deprecated
+  @Deprecated(since = "1.5.0")
   public static @NotNull Set<String> getFlashFileExtensions() {
     return Collections.unmodifiableSet(FLASH_FILE_EXTENSIONS);
   }

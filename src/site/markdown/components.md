@@ -21,7 +21,7 @@ and specifiy additonal property.
 
 Component definition for subcomponent:
 
-```json
+```json-jcr
 {
   "jcr:primaryType": "cq:Component",
   "sling:resourceSuperType": "wcm-io/wcm/commons/components/global/wcmInit"
@@ -47,7 +47,7 @@ Base page component which defines a simplified page properties dialog with only 
 
 You can inherit from this in you page components:
 
-```json
+```json-jcr
 {
   "jcr:primaryType": "cq:Component",
   "sling:resourceSuperType": "wcm-io/wcm/commons/components/global/page"

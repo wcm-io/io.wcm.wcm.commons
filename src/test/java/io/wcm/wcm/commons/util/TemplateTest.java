@@ -99,13 +99,13 @@ class TemplateTest {
   }
 
   @Test
-  void testForPage() throws Exception {
+  void testForPage() {
     assertEquals(AppTemplate.TEMPLATE_1, Template.forPage(page, AppTemplate.values()));
     assertNull(Template.forPage(null, AppTemplate.values()));
   }
 
   @Test
-  void testForPage_Enum() throws Exception {
+  void testForPage_Enum() {
     assertEquals(AppTemplate.TEMPLATE_1, Template.forPage(page, AppTemplate.class));
     assertNull(Template.forPage(null, AppTemplate.class));
   }
