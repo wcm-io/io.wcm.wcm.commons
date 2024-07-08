@@ -27,6 +27,9 @@
       <action type="add" dev="sseifert" issue="1">
         Add AemObjectsReflectionToStringBuilder to support reflection-based toString() methods with more compact/human-readable output of AEM-related objects.
       </action>
+      <action type="update" dev="sseifert">
+        Switch to AEM 6.5.17 as minimum version.
+      </action>
     </release>
 
     <release version="1.10.0" date="2023-04-19">
