@@ -77,6 +77,9 @@ public final class VersionInfo {
     this.bundles = getFilteredBundles(filterPatterns);
   }
 
+  /**
+   * @return Bundles
+   */
   public Collection<BundleInfo> getBundles() {
     return this.bundles;
   }
