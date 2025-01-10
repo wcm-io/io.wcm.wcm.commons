@@ -52,4 +52,4 @@ Sources: https://github.com/wcm-io/io.wcm.wcm.commons
 [components]: components.html
 [configuration]: configuration.html
 [apidocs]: apidocs/
-[changelog]: changes-report.html
+[changelog]: changes.html
