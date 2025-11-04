@@ -108,6 +108,26 @@ class PathTest {
   }
 
   @Test
+  void testGetAbsoluteLevel_Launches_Nested() {
+    assertEquals(2, Path.getAbsoluteLevel("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b", resolver));
+    assertEquals(1, Path.getAbsoluteLevel("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a", resolver));
+    assertEquals(0, Path.getAbsoluteLevel("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content", resolver));
+    assertEquals(-1, Path.getAbsoluteLevel("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1", resolver));
+  }
+
+  @Test
+  void testGetAbsoluteLevel_Launches_Nested_Nested() {
+    assertEquals(2, Path.getAbsoluteLevel("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2"
+        + "/content/launches/2018/01/01/launch1/content/a/b", resolver));
+    assertEquals(1, Path.getAbsoluteLevel("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2"
+        + "/content/launches/2018/01/01/launch1/content/a", resolver));
+    assertEquals(0, Path.getAbsoluteLevel("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2"
+        + "/content/launches/2018/01/01/launch1/content", resolver));
+    assertEquals(-1, Path.getAbsoluteLevel("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2"
+        + "/content/launches/2018/01/01/launch1", resolver));
+  }
+
+  @Test
   void testGetAbsoluteParent() {
     assertEquals("/content", Path.getAbsoluteParent("/content/a/b/c", 0, resolver));
     assertEquals("/content/a", Path.getAbsoluteParent("/content/a/b/c", 1, resolver));
@@ -157,6 +177,40 @@ class PathTest {
         Path.getAbsoluteParent("/content/launches/2018/01/01/launch1/content/a/b/c", 3, resolver));
     assertEquals("", Path.getAbsoluteParent("/content/launches/2018/01/01/launch1/content/a/b/c", 4, resolver));
     assertEquals("", Path.getAbsoluteParent("/content/launches/2018/01/01/launch1/content/a/b/c", -1, resolver));
+  }
+
+  @Test
+  void testGetAbsoluteParent_Launches_Nested() {
+    assertEquals("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content",
+        Path.getAbsoluteParent("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 0, resolver));
+    assertEquals("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a",
+        Path.getAbsoluteParent("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 1, resolver));
+    assertEquals("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b",
+        Path.getAbsoluteParent("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 2, resolver));
+    assertEquals("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c",
+        Path.getAbsoluteParent("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 3, resolver));
+    assertEquals("", Path.getAbsoluteParent("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 4, resolver));
+    assertEquals("", Path.getAbsoluteParent("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", -1, resolver));
+  }
+
+  @Test
+  void testGetAbsoluteParent_Launches_Nested_Nested() {
+    assertEquals("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content",
+        Path.getAbsoluteParent("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 0,
+            resolver));
+    assertEquals("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a",
+        Path.getAbsoluteParent("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 1,
+            resolver));
+    assertEquals("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b",
+        Path.getAbsoluteParent("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 2,
+            resolver));
+    assertEquals("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c",
+        Path.getAbsoluteParent("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 3,
+            resolver));
+    assertEquals("", Path.getAbsoluteParent(
+        "/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", 4, resolver));
+    assertEquals("", Path.getAbsoluteParent(
+        "/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", -1, resolver));
   }
 
   @Test
@@ -251,6 +305,17 @@ class PathTest {
   @Test
   void testGetOriginalPath_Launches() {
     assertEquals("/content/a/b/c", Path.getOriginalPath("/content/launches/2018/01/01/launch1/content/a/b/c", resolver));
+  }
+
+  @Test
+  void testGetOriginalPath_Launches_Nested() {
+    assertEquals("/content/a/b/c", Path.getOriginalPath("/content/launches/2018/01/01/launch2/content/launches/2018/01/01/launch1/content/a/b/c", resolver));
+  }
+
+  @Test
+  void testGetOriginalPath_Launches_Nested_Nested() {
+    assertEquals("/content/a/b/c", Path.getOriginalPath("/content/launches/2018/01/01/launch3/content/launches/2018/01/01/launch2"
+        + "/content/launches/2018/01/01/launch1/content/a/b/c", resolver));
   }
 
   @Test
