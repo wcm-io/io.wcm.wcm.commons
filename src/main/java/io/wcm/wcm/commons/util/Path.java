@@ -27,6 +27,7 @@ import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.tenant.Tenant;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
 import com.day.cq.wcm.api.Page;
@@ -81,7 +82,7 @@ public final class Path {
    * @param resourceResolver Resource resolver
    * @return Absolute parent path or empty string if path is invalid
    */
-  public static String getAbsoluteParent(@NotNull String path, int parentLevel, @NotNull ResourceResolver resourceResolver) {
+  public static @NotNull String getAbsoluteParent(@NotNull String path, int parentLevel, @NotNull ResourceResolver resourceResolver) {
     if (parentLevel < 0) {
       return "";
     }
@@ -99,7 +100,7 @@ public final class Path {
    * @return Absolute parent page or null if path is invalid
    */
   @SuppressWarnings("null")
-  public static Page getAbsoluteParent(@NotNull Page page, int parentLevel, @NotNull ResourceResolver resourceResolver) {
+  public static @Nullable Page getAbsoluteParent(@NotNull Page page, int parentLevel, @NotNull ResourceResolver resourceResolver) {
     PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
     String absoluteParentPath = getAbsoluteParent(page.getPath(), parentLevel, resourceResolver);
     if (StringUtils.isEmpty(absoluteParentPath)) {
@@ -130,7 +131,7 @@ public final class Path {
    * @param resourceResolver Resource resolver
    * @return Path that is not a version history or launch path
    */
-  public static String getOriginalPath(@NotNull String path, @NotNull ResourceResolver resourceResolver) {
+  public static @Nullable String getOriginalPath(@NotNull String path, @NotNull ResourceResolver resourceResolver) {
     if (StringUtils.isEmpty(path)) {
       return null;
     }
