@@ -34,16 +34,21 @@ import com.day.cq.wcm.api.PageManager;
 
 /**
  * Handling of paths and absolute parents in AEM.
+ *
  * <p>
  * The methods implement special handling for AEM features:
  * </p>
+ *
  * <ul>
  * <li>Side-by-side version comparison (at <code>/tmp/versionhistory</code> or
  * <code>/content/versionhistory</code>)</li>
  * <li>Launches (at <code>/content/launches</code>)</li>
  * </ul>
+ *
+ * <p>
  * Paths starting with one of these special paths are treated in a special way so code relying on the original path
  * structure still works.
+ * </p>
  */
 @ProviderType
 public final class Path {

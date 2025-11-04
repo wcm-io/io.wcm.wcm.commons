@@ -26,6 +26,7 @@ import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Allows to detect if the current AEM instance is an author or publish instance.
+ *
  * <p>
  * This service does not rely in <code>SlingSettingServices</code> which is deprecated and subject to removal in latest
  * AEM versions.

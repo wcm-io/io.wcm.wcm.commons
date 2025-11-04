@@ -87,9 +87,11 @@ public final class CacheHeader {
    * the resource was not modified since the client retrieved the resource, a 304-redirect is send to the response (and
    * the method returns true). If the resource has changed (or the client didn't) supply the "If-Modified-Since" header
    * a "Last-Modified" header is set so future requests can be cached.
+   *
    * <p>
    * Expires header is automatically set on author instance, and not set on publish instance.
    * </p>
+   *
    * @param resource the JCR resource the last modification date is taken from
    * @param request Request
    * @param response Response
@@ -125,9 +127,11 @@ public final class CacheHeader {
    * resource. If the resource was not modified since the client retrieved the resource, a 304-redirect is send to the
    * response (and the method returns true). If the resource has changed (or the client didn't) supply the
    * "If-Modified-Since" header a "Last-Modified" header is set so future requests can be cached.
+   *
    * <p>
    * Expires header is automatically set on author instance, and not set on publish instance.
    * </p>
+   *
    * @param dateProvider abstraction layer that calculates the last-modification time of an aggregated resource
    * @param request Request
    * @param response Response
