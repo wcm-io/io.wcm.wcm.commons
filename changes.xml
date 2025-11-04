@@ -24,6 +24,12 @@
     xsi:schemaLocation="http://maven.apache.org/changes/2.0.0 https://maven.apache.org/xsd/changes-2.0.0.xsd">
   <body>
 
+    <release version="1.11.2" date="not released">
+      <action type="update" dev="sseifert" issue="9">
+        Path: Add nullable annotations for return values.
+      </action>
+    </release>
+
     <release version="1.11.0" date="2024-07-08">
       <action type="add" dev="sseifert" issue="1">
         Add AemObjectsReflectionToStringBuilder to support reflection-based toString() methods with more compact/human-readable output of AEM-related objects.
