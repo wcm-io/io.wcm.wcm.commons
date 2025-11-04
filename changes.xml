@@ -25,7 +25,7 @@
   <body>
 
     <release version="1.11.2" date="not released">
-      <action type="update" dev="sseifert">
+      <action type="update" dev="sseifert" issue="9">
         io.wcm.wcm.commons.util.Path: Add nullable annotations for return values.
       </action>
     </release>
