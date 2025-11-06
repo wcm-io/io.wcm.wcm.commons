@@ -148,9 +148,22 @@ public final class Path {
         return "/content" + legacyVersionHistoryMatcher.group(1);
       }
     }
+    return getOriginalPathLaunches(path);
+  }
+
+  /**
+   * Check recursively for launches (launches can be nested).
+   * @param path Path
+   * @return Path that is not a launch path
+   */
+  private static String getOriginalPathLaunches(@NotNull String path) {
     Matcher launchesMatcher = LAUNCHES_PATTERN.matcher(path);
     if (launchesMatcher.matches()) {
-      return launchesMatcher.group(1);
+      String subPath = launchesMatcher.group(1);
+      if (subPath == null) {
+        return null;
+      }
+      return getOriginalPathLaunches(subPath);
     }
     return path;
   }
@@ -176,9 +189,19 @@ public final class Path {
       }
       return 2;
     }
+    return getAbsoluteLevelOffsetLaunches(path);
+  }
+
+  /**
+   * Check recursively for launches (launches can be nested).
+   * @param path Path
+   * @return 0 or offset if a launch path.
+   */
+  private static int getAbsoluteLevelOffsetLaunches(@NotNull String path) {
     Matcher launchesMatcher = LAUNCHES_PATTERN.matcher(path);
     if (launchesMatcher.matches()) {
-      return 6;
+      String subPath = path.substring(Text.getAbsoluteParent(path, 5).length());
+      return 6 + getAbsoluteLevelOffsetLaunches(subPath);
     }
     return 0;
   }
