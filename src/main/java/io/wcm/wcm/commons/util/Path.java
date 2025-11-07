@@ -27,6 +27,7 @@ import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.tenant.Tenant;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
 import com.day.cq.wcm.api.Page;
@@ -34,16 +35,21 @@ import com.day.cq.wcm.api.PageManager;
 
 /**
  * Handling of paths and absolute parents in AEM.
+ *
  * <p>
  * The methods implement special handling for AEM features:
  * </p>
+ *
  * <ul>
  * <li>Side-by-side version comparison (at <code>/tmp/versionhistory</code> or
  * <code>/content/versionhistory</code>)</li>
  * <li>Launches (at <code>/content/launches</code>)</li>
  * </ul>
+ *
+ * <p>
  * Paths starting with one of these special paths are treated in a special way so code relying on the original path
  * structure still works.
+ * </p>
  */
 @ProviderType
 public final class Path {
@@ -76,7 +82,7 @@ public final class Path {
    * @param resourceResolver Resource resolver
    * @return Absolute parent path or empty string if path is invalid
    */
-  public static String getAbsoluteParent(@NotNull String path, int parentLevel, @NotNull ResourceResolver resourceResolver) {
+  public static @NotNull String getAbsoluteParent(@NotNull String path, int parentLevel, @NotNull ResourceResolver resourceResolver) {
     if (parentLevel < 0) {
       return "";
     }
@@ -94,7 +100,7 @@ public final class Path {
    * @return Absolute parent page or null if path is invalid
    */
   @SuppressWarnings("null")
-  public static Page getAbsoluteParent(@NotNull Page page, int parentLevel, @NotNull ResourceResolver resourceResolver) {
+  public static @Nullable Page getAbsoluteParent(@NotNull Page page, int parentLevel, @NotNull ResourceResolver resourceResolver) {
     PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
     String absoluteParentPath = getAbsoluteParent(page.getPath(), parentLevel, resourceResolver);
     if (StringUtils.isEmpty(absoluteParentPath)) {
@@ -125,7 +131,7 @@ public final class Path {
    * @param resourceResolver Resource resolver
    * @return Path that is not a version history or launch path
    */
-  public static String getOriginalPath(@NotNull String path, @NotNull ResourceResolver resourceResolver) {
+  public static @Nullable String getOriginalPath(@NotNull String path, @NotNull ResourceResolver resourceResolver) {
     if (StringUtils.isEmpty(path)) {
       return null;
     }
@@ -142,9 +148,22 @@ public final class Path {
         return "/content" + legacyVersionHistoryMatcher.group(1);
       }
     }
+    return getOriginalPathLaunches(path);
+  }
+
+  /**
+   * Check recursively for launches (launches can be nested).
+   * @param path Path
+   * @return Path that is not a launch path
+   */
+  private static String getOriginalPathLaunches(@NotNull String path) {
     Matcher launchesMatcher = LAUNCHES_PATTERN.matcher(path);
     if (launchesMatcher.matches()) {
-      return launchesMatcher.group(1);
+      String subPath = launchesMatcher.group(1);
+      if (subPath == null) {
+        return null;
+      }
+      return getOriginalPathLaunches(subPath);
     }
     return path;
   }
@@ -170,9 +189,19 @@ public final class Path {
       }
       return 2;
     }
+    return getAbsoluteLevelOffsetLaunches(path);
+  }
+
+  /**
+   * Check recursively for launches (launches can be nested).
+   * @param path Path
+   * @return 0 or offset if a launch path.
+   */
+  private static int getAbsoluteLevelOffsetLaunches(@NotNull String path) {
     Matcher launchesMatcher = LAUNCHES_PATTERN.matcher(path);
     if (launchesMatcher.matches()) {
-      return 6;
+      String subPath = path.substring(Text.getAbsoluteParent(path, 5).length());
+      return 6 + getAbsoluteLevelOffsetLaunches(subPath);
     }
     return 0;
   }

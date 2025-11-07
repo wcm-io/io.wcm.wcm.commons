@@ -55,7 +55,7 @@ public class DenyWcmDisabled {
   private int errorCode;
 
   @PostConstruct
-  protected void activate() throws IOException {
+  private void activate() throws IOException {
     if (wcmMode == WCMMode.DISABLED) {
       response.sendError(errorCode);
     }

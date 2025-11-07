@@ -47,6 +47,7 @@ import io.wcm.sling.commons.adapter.AdaptTo;
 
 /**
  * Tries to resolve properties with or without inheritance from pages, content policies or component definitions.
+ *
  * <p>
  * The lookup can take place in:
  * </p>
@@ -56,6 +57,7 @@ import io.wcm.sling.commons.adapter.AdaptTo;
  * <li>Properties defined on the component associated with the current resource (including super components if
  * inheritance is enabled)</li>
  * </ol>
+ *
  * <p>
  * By default, only option 3 is enabled (with inheritance).
  * Please make sure to {@link #close()} instances of this class after usage.

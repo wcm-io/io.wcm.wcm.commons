@@ -46,9 +46,11 @@ public final class Template {
 
   /**
    * Gets the resource type for a given template path.
+   *
    * <p>
    * This is based on the assumption that:
    * </p>
+   *
    * <ul>
    * <li>Given a template path is <code>/apps/{app_path}/templates/{optional_path}/{template_path}</code></li>
    * <li>Then the resource path is at <code>{app_path}/components/{optional_path}/page/{template_path}</code></li>

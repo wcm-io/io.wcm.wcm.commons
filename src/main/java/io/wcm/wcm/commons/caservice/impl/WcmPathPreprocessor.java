@@ -35,7 +35,13 @@ public class WcmPathPreprocessor implements PathPreprocessor {
 
   @Override
   public @NotNull String apply(@NotNull String path, @NotNull ResourceResolver resourceResolver) {
-    return Path.getOriginalPath(path, resourceResolver);
+    String originalPath = Path.getOriginalPath(path, resourceResolver);
+    if (originalPath != null) {
+      return originalPath;
+    }
+    else {
+      return path;
+    }
   }
 
 }
