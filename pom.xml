@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.parent_toplevel</artifactId>
-    <version>2.6.0</version>
+    <version>2.7.0</version>
     <relativePath/>
   </parent>
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.commons</artifactId>
-  <version>1.11.2</version>
+  <version>1.11.4</version>
   <packaging>jar</packaging>
 
   <name>WCM Commons</name>
@@ -49,7 +49,7 @@
     <site.url.module.prefix>wcm/commons</site.url.module.prefix>
 
     <!-- Enable reproducible builds -->
-    <project.build.outputTimestamp>2025-11-07T17:53:37Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2026-02-24T10:03:52Z</project.build.outputTimestamp>
   </properties>
 
   <dependencies>
@@ -97,7 +97,7 @@
     <dependency>
       <groupId>io.wcm</groupId>
       <artifactId>io.wcm.testing.aem-mock.junit5</artifactId>
-      <version>5.6.10</version>
+      <version>5.7.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
