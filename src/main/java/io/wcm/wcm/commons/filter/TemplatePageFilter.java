@@ -56,8 +56,8 @@ public final class TemplatePageFilter extends PageFilter {
   public TemplatePageFilter(boolean includeInvalid, boolean includeHidden, @NotNull TemplatePathInfo @NotNull... templates) {
     super(includeInvalid, includeHidden);
     allowedTemplatePaths = Arrays.stream(templates)
-        .map(TemplatePathInfo::getTemplatePath)
-        .collect(Collectors.toSet());
+      .map(TemplatePathInfo::getTemplatePath)
+      .collect(Collectors.toSet());
   }
 
   @Override

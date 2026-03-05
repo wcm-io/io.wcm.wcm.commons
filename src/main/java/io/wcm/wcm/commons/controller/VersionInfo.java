@@ -87,8 +87,8 @@ public final class VersionInfo {
   private Collection<BundleInfo> getFilteredBundles(List<Pattern> filterPatterns) {
     Collection<BundleInfo> allBundles = bundleInfoService.getBundles();
     return allBundles.stream()
-        .filter(bundle -> matchesFilterPatterns(bundle, filterPatterns))
-        .collect(Collectors.toList());
+      .filter(bundle -> matchesFilterPatterns(bundle, filterPatterns))
+      .collect(Collectors.toList());
   }
 
   private boolean matchesFilterPatterns(BundleInfo bundle, List<Pattern> filterPatterns) {
@@ -96,14 +96,14 @@ public final class VersionInfo {
       return true;
     }
     return filterPatterns.stream()
-        .anyMatch(pattern -> pattern.matcher(bundle.getSymbolicName()).matches());
+      .anyMatch(pattern -> pattern.matcher(bundle.getSymbolicName()).matches());
   }
 
   private Stream<String> getFilterRegex() {
     String[] regex;
     try (ComponentPropertyResolver componentPropertyResolver = componentPropertyResolverFactory.get(currentPage)
-        .componentPropertiesResolution(ComponentPropertyResolution.RESOLVE)
-        .pagePropertiesResolution(ComponentPropertyResolution.RESOLVE)) {
+      .componentPropertiesResolution(ComponentPropertyResolution.RESOLVE)
+      .pagePropertiesResolution(ComponentPropertyResolution.RESOLVE)) {
       regex = componentPropertyResolver.get(PN_FILTER_REGEX, String[].class);
     }
     if (regex != null) {
@@ -116,18 +116,18 @@ public final class VersionInfo {
 
   private List<Pattern> toPattern(Stream<String> regex) {
     return regex
-        .map(regExString -> {
-          try {
-            return Pattern.compile(regExString);
-          }
-          catch (PatternSyntaxException ex) {
-            log.warn("Invalid pattern for version info filtering: {} in {}",
-                regex, currentPage.getPath(), ex);
-            return null;
-          }
-        })
-        .filter(Objects::nonNull)
-        .collect(Collectors.toList());
+      .map(regExString -> {
+        try {
+          return Pattern.compile(regExString);
+        }
+        catch (PatternSyntaxException ex) {
+          log.warn("Invalid pattern for version info filtering: {} in {}",
+              regex, currentPage.getPath(), ex);
+          return null;
+        }
+      })
+      .filter(Objects::nonNull)
+      .collect(Collectors.toList());
   }
 
 }

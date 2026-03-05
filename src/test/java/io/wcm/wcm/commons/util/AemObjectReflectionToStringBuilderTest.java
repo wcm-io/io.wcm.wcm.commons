@@ -52,7 +52,7 @@ class AemObjectReflectionToStringBuilderTest {
 
   private static final ValueMap VALUEMAP_SAMPLE;
   static {
-    final Map<String,Object> props = new HashMap<>();
+    final Map<String, Object> props = new HashMap<>();
     props.put("prop1", "value1");
     props.put(JCR_CREATED, new Date());
     props.put(JCR_PRIMARYTYPE, NT_UNSTRUCTURED);
@@ -96,6 +96,7 @@ class AemObjectReflectionToStringBuilderTest {
   @SuppressWarnings("unused")
   @SuppressFBWarnings("URF_UNREAD_FIELD")
   private static final class ClassWithFields {
+
     String prop1;
     Resource resource;
     Page page;

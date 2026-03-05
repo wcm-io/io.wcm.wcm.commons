@@ -137,14 +137,13 @@ public final class FileExtension {
       JPEG,
       PNG,
       "jpeg" // check for this alternative JEPG extension as well
-      );
+  );
 
   /**
    * all file extensions that will be displayed as flash
    */
   private static final Set<String> FLASH_FILE_EXTENSIONS = Set.of(
-      SWF
-      );
+      SWF);
 
   /**
    * Check if the given file extension is a standard image format supported by web browsers and AEM Layer

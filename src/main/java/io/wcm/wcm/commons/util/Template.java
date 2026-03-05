@@ -35,7 +35,9 @@ import com.day.cq.wcm.api.Page;
  * Template utility methods
  */
 @ProviderType
-@SuppressWarnings({ "null", "java:S2589" }) // extra null checks for backward compatibility
+@SuppressWarnings({
+    "null", "java:S2589"
+}) // extra null checks for backward compatibility
 public final class Template {
 
   static final Pattern TEMPLATE_PATH_PATTERN = Pattern.compile("^/(apps|libs)/(.+)/templates(/.*)?/([^/]+)$");

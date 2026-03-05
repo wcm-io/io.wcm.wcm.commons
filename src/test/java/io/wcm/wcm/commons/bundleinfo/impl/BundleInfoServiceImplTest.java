@@ -109,7 +109,9 @@ class BundleInfoServiceImplTest {
     when(bundleContext.getBundles()).thenReturn(bundles);
   }
 
-  @SuppressWarnings({ "unchecked", "null" })
+  @SuppressWarnings({
+      "unchecked", "null"
+  })
   private Bundle bundle(String symbolicName, BundleState state, Object... headers) {
     Dictionary headerDictionary = MapUtil.toDictionary(headers);
     Bundle bundle = mock(Bundle.class);

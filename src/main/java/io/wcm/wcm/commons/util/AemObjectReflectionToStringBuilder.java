@@ -62,7 +62,9 @@ public class AemObjectReflectionToStringBuilder extends ReflectionToStringBuilde
   }
 
   @Override
-  @SuppressWarnings({ "unchecked", "java:S3740" })
+  @SuppressWarnings({
+      "unchecked", "java:S3740"
+  })
   protected Object getValue(Field field) throws IllegalAccessException {
     final Class<?> fieldType = field.getType();
     // check if a dedicated processor is registered for the given field type
@@ -84,13 +86,15 @@ public class AemObjectReflectionToStringBuilder extends ReflectionToStringBuilde
    */
   public static Map<String, Object> filteredValueMap(ValueMap props) {
     return props.entrySet().stream()
-        .filter(entry -> !entry.getKey().startsWith("jcr:") && entry.getValue() != null)
-        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1, o2) -> o1, TreeMap::new));
+      .filter(entry -> !entry.getKey().startsWith("jcr:") && entry.getValue() != null)
+      .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1, o2) -> o1, TreeMap::new));
   }
 
   private static class TypedValueProcessor<T> {
+
     private final Class<T> type;
     private final Function<T, Object> processor;
+
     TypedValueProcessor(Class<T> type, Function<T, Object> processor) {
       this.type = type;
       this.processor = processor;
