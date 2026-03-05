@@ -191,7 +191,9 @@ public final class ComponentPropertyResolver implements AutoCloseable {
     return StringUtils.isNotEmpty(resource.getResourceType());
   }
 
-  @SuppressWarnings({ "null", "java:S2589" }) // extra null checks for backward compatibility
+  @SuppressWarnings({
+      "null", "java:S2589"
+  }) // extra null checks for backward compatibility
   private static @Nullable Resource getResourceWithResourceType(@Nullable Resource resource) {
     if (resource == null) {
       return null;

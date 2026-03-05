@@ -65,6 +65,7 @@ class WcmInitTest {
     when(editContext.getComponent()).thenReturn(component);
     when(component.getDialogPath()).thenReturn(DIALOG_PATH);
     doAnswer(new Answer<Object>() {
+
       @Override
       public Object answer(InvocationOnMock invocation) throws IOException {
         Writer writer = (Writer)invocation.getArguments()[0];

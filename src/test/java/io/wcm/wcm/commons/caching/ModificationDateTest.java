@@ -115,8 +115,7 @@ class ModificationDateTest {
     applyPageLastModified(resource2, SAMPLE_CALENDAR_2);
     assertEquals(SAMPLE_CALENDAR_2.getTime(), ModificationDate.mostRecent(
         new PageModificationDateProvider(page1),
-        new ResourceModificationDateProvider(resource2)
-        ));
+        new ResourceModificationDateProvider(resource2)));
   }
 
   @Test

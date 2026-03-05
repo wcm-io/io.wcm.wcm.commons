@@ -139,7 +139,7 @@ class CacheHeaderTest {
   @SuppressWarnings("java:S2699") // validation via doAnswer
   void testSetExpiresSeconds() {
     doAnswer(new ValidateDateHeaderAnswer(200 * DateUtils.MILLIS_PER_SECOND))
-        .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
+      .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
     CacheHeader.setExpiresSeconds(response, 200);
   }
 
@@ -147,7 +147,7 @@ class CacheHeaderTest {
   @SuppressWarnings("java:S2699") // validation via doAnswer
   void testSetExpiresHours() {
     doAnswer(new ValidateDateHeaderAnswer(15 * DateUtils.MILLIS_PER_HOUR))
-        .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
+      .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
     CacheHeader.setExpiresHours(response, 15);
   }
 
@@ -155,7 +155,7 @@ class CacheHeaderTest {
   @SuppressWarnings("java:S2699") // validation via doAnswer
   void testSetExpiresDays() {
     doAnswer(new ValidateDateHeaderAnswer(20 * DateUtils.MILLIS_PER_DAY))
-        .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
+      .when(response).setHeader(eq(CacheHeader.HEADER_EXPIRES), anyString());
     CacheHeader.setExpiresDays(response, 20);
   }
 

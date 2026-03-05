@@ -80,7 +80,9 @@ class VersionInfoTest {
   @Test
   void testFiltered_PageProperties_Array() {
     context.currentPage(context.create().page("/content/page1", null, ImmutableValueMap.of(
-        PN_FILTER_REGEX, new String[] { "^.*\\.bundle2$", "^.*\\.bundle3$" })));
+        PN_FILTER_REGEX, new String[] {
+            "^.*\\.bundle2$", "^.*\\.bundle3$"
+        })));
     assertBundles("aaa.bundle2", "bbb.bundle3");
   }
 
@@ -96,7 +98,9 @@ class VersionInfoTest {
   @Test
   void testFiltered_PageComponent_Array() {
     context.create().resource("/apps/app1/components/comp1",
-        PN_FILTER_REGEX, new String[] { "^.*\\.bundle2$", "^.*\\.bundle3$" });
+        PN_FILTER_REGEX, new String[] {
+            "^.*\\.bundle2$", "^.*\\.bundle3$"
+        });
     context.currentPage(context.create().page("/content/page1", null, ImmutableValueMap.of(
         "sling:resourceType", "/apps/app1/components/comp1")));
     assertBundles("aaa.bundle2", "bbb.bundle3");
@@ -113,8 +117,8 @@ class VersionInfoTest {
 
     VersionInfo underTest = AdaptTo.notNull(context.request(), VersionInfo.class);
     List<String> actual = underTest.getBundles().stream()
-        .map(BundleInfo::getSymbolicName)
-        .collect(Collectors.toList());
+      .map(BundleInfo::getSymbolicName)
+      .collect(Collectors.toList());
 
     assertEquals(expected, actual);
   }

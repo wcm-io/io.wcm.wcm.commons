@@ -30,9 +30,7 @@ import io.wcm.wcm.commons.util.TemplatePathInfo;
  */
 public enum AppTemplate implements TemplatePathInfo {
 
-  TEMPLATE_1("/apps/app1/templates/t1"),
-  TEMPLATE_2("/apps/app1/templates/t2"),
-  TEMPLATE_3("/apps/app1/templates/t3");
+  TEMPLATE_1("/apps/app1/templates/t1"), TEMPLATE_2("/apps/app1/templates/t2"), TEMPLATE_3("/apps/app1/templates/t3");
 
   private final @NotNull String templatePath;
   private final String resourceType;

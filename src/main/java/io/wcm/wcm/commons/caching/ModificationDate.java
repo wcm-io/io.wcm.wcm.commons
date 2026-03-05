@@ -61,9 +61,11 @@ public final class ModificationDate {
   }
 
   /**
-   * Looks for either jcr:lastModified or cq:lastModified property in the given resource, which can be either the jcr:content-ode of a cq-page, or a rendition
+   * Looks for either jcr:lastModified or cq:lastModified property in the given resource, which can be either the
+   * jcr:content-ode of a cq-page, or a rendition
    * node
-   * @param resource a resource with a cq:lastModified property *and/or* a file/jcr:content subnode with a jcr:lastModified property
+   * @param resource a resource with a cq:lastModified property *and/or* a file/jcr:content subnode with a
+   *          jcr:lastModified property
    * @return the date or null if last modified property could not be found
    */
   public static @Nullable Date get(@Nullable Resource resource) {
@@ -82,7 +84,9 @@ public final class ModificationDate {
     return mostRecent(cqModified, resourceModified);
   }
 
-  @SuppressWarnings({ "null", "java:S2589" }) // extra null checks for backward compatibility
+  @SuppressWarnings({
+      "null", "java:S2589"
+  }) // extra null checks for backward compatibility
   private static Date getResourceMetadataModificationTime(Resource resource) {
     ResourceMetadata metadata = resource.getResourceMetadata();
     if (metadata != null) {

@@ -49,8 +49,8 @@ public class BundleInfoServiceImpl implements BundleInfoService {
   @SuppressWarnings("null")
   public @NotNull Collection<BundleInfo> getBundles() {
     return Arrays.stream(bundleContext.getBundles())
-        .map(bundle -> (BundleInfo)new BundleInfoImpl(bundle))
-        .collect(Collectors.toCollection(TreeSet::new));
+      .map(bundle -> (BundleInfo)new BundleInfoImpl(bundle))
+      .collect(Collectors.toCollection(TreeSet::new));
   }
 
 }

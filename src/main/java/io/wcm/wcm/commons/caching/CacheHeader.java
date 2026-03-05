@@ -64,7 +64,8 @@ public final class CacheHeader {
   static final String NO_CACHE = "no-cache";
 
   /**
-   * shared instance of the RFC1123 date format, must not be used directly but only using the synchronized {@link #formatDate(Date)} and
+   * shared instance of the RFC1123 date format, must not be used directly but only using the synchronized
+   * {@link #formatDate(Date)} and
    * {@link #parseDate(String)} methods
    */
   @SuppressWarnings("java:S2885")
