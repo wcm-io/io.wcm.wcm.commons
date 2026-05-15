@@ -24,6 +24,7 @@ import java.util.Map;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -212,7 +213,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
    * @return true for path-based resource types
    */
   private static boolean isPathBasedResourceType(@NotNull String resourceType) {
-    return StringUtils.contains(resourceType, "/");
+    return Strings.CS.contains(resourceType, "/");
   }
 
   /**
@@ -295,7 +296,7 @@ public final class ComponentPropertyResolver implements AutoCloseable {
     }
     @Nullable
     T result;
-    if (StringUtils.contains(name, "/")) {
+    if (Strings.CS.contains(name, "/")) {
       // if a property in child resource is addressed get property value via local resource
       // because the map behind the getProperties() method does not support child resource access
       String childResourcePath = StringUtils.substringBeforeLast(name, "/");

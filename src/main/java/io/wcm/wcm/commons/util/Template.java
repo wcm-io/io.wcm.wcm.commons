@@ -24,6 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
@@ -105,7 +106,7 @@ public final class Template {
     }
     String templatePath = page.getProperties().get(NameConstants.PN_TEMPLATE, String.class);
     for (String givenTemplatePath : templatePaths) {
-      if (StringUtils.equals(templatePath, givenTemplatePath)) {
+      if (Strings.CS.equals(templatePath, givenTemplatePath)) {
         return true;
       }
     }
@@ -123,7 +124,7 @@ public final class Template {
       return null;
     }
     for (TemplatePathInfo template : templates) {
-      if (StringUtils.equals(template.getTemplatePath(), templatePath)) {
+      if (Strings.CS.equals(template.getTemplatePath(), templatePath)) {
         return template;
       }
     }
@@ -145,7 +146,7 @@ public final class Template {
     }
     for (Class<E> templateEnum : templateEnums) {
       for (E template : EnumSet.allOf(templateEnum)) {
-        if (StringUtils.equals(template.getTemplatePath(), templatePath)) {
+        if (Strings.CS.equals(template.getTemplatePath(), templatePath)) {
           return template;
         }
       }

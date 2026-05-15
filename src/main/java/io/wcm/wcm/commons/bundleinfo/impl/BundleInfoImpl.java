@@ -21,6 +21,7 @@ package io.wcm.wcm.commons.bundleinfo.impl;
 
 import java.util.Date;
 import java.util.Dictionary;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -65,7 +66,7 @@ class BundleInfoImpl implements BundleInfo {
 
   @Override
   public @NotNull String getName() {
-    return StringUtils.defaultString(headers.get(Constants.BUNDLE_NAME), getSymbolicName());
+    return Objects.toString(headers.get(Constants.BUNDLE_NAME), getSymbolicName());
   }
 
   @Override

@@ -24,6 +24,7 @@ import static com.day.cq.commons.jcr.JcrConstants.JCR_PRIMARYTYPE;
 import static com.day.cq.wcm.api.NameConstants.NT_TEMPLATE;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.jetbrains.annotations.NotNull;
@@ -69,7 +70,7 @@ public final class EditableTemplate {
     String resourcePath = wcmComponentContext.getResource().getPath();
     String templateStructurePath = template.getPath() + "/" + NN_EDITABLE_TEMPLATE_STRUCTURE + "/" + JCR_CONTENT;
     String resourcePathInStructure = null;
-    if (StringUtils.startsWith(resourcePath, templateStructurePath + "/")) {
+    if (Strings.CS.startsWith(resourcePath, templateStructurePath + "/")) {
       resourcePathInStructure = resourcePath;
     }
     else {
@@ -115,7 +116,7 @@ public final class EditableTemplate {
     if (resource != null) {
       Resource parent = resource.getParent();
       if (parent != null) {
-        return StringUtils.equals(NT_TEMPLATE, parent.getValueMap().get(JCR_PRIMARYTYPE, String.class));
+        return Strings.CS.equals(NT_TEMPLATE, parent.getValueMap().get(JCR_PRIMARYTYPE, String.class));
       }
     }
     return false;

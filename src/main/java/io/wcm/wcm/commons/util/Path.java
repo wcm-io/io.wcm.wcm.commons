@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.tenant.Tenant;
@@ -117,7 +118,7 @@ public final class Path {
    * @return level &gt;= 0 if path is valid, -1 if path is invalid
    */
   public static int getAbsoluteLevel(@NotNull String path, @NotNull ResourceResolver resourceResolver) {
-    if (StringUtils.isEmpty(path) || StringUtils.equals(path, "/")) {
+    if (StringUtils.isEmpty(path) || Strings.CS.equals(path, "/")) {
       return -1;
     }
     String originalPath = getOriginalPath(path, resourceResolver);

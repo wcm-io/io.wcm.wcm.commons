@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.service.cm.Configuration;
@@ -84,10 +84,10 @@ public class InstanceTypeServiceImpl implements InstanceTypeService {
   private void activate(Config config) {
     // detect instance type
     String instanceType = config.instance_type();
-    if (StringUtils.equals(instanceType, RunMode.AUTHOR)) {
+    if (Strings.CS.equals(instanceType, RunMode.AUTHOR)) {
       isAuthor = true;
     }
-    else if (StringUtils.equals(instanceType, RunMode.PUBLISH)) {
+    else if (Strings.CS.equals(instanceType, RunMode.PUBLISH)) {
       isAuthor = false;
     }
     else {
@@ -114,7 +114,7 @@ public class InstanceTypeServiceImpl implements InstanceTypeService {
       if (configs != null && configs.length > 0) {
         Object defaultWcmMode = configs[0].getProperties().get(WCM_MODE_PROPERTY);
         if (defaultWcmMode instanceof String) {
-          return !StringUtils.equalsIgnoreCase(WCMMode.DISABLED.name(), (String)defaultWcmMode);
+          return !Strings.CI.equals(WCMMode.DISABLED.name(), (String)defaultWcmMode);
         }
       }
     }
