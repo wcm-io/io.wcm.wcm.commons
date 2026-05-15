@@ -21,6 +21,7 @@ package io.wcm.wcm.commons.component;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceWrapper;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Simulate behavior of SlingRequestDispatcher$TypeOverwritingResourceWrapper
@@ -29,13 +30,13 @@ class TypeOverwritingResourceWrapper extends ResourceWrapper {
 
   private final String resourceType;
 
-  TypeOverwritingResourceWrapper(Resource delegatee, String resourceType) {
+  TypeOverwritingResourceWrapper(@NotNull Resource delegatee, @NotNull String resourceType) {
     super(delegatee);
     this.resourceType = resourceType;
   }
 
   @Override
-  public String getResourceType() {
+  public @NotNull String getResourceType() {
     return resourceType;
   }
 

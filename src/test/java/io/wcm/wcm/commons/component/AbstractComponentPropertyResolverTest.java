@@ -19,6 +19,8 @@
  */
 package io.wcm.wcm.commons.component;
 
+import static com.day.cq.commons.jcr.JcrConstants.JCR_PRIMARYTYPE;
+import static com.day.cq.commons.jcr.JcrConstants.NT_UNSTRUCTURED;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -28,7 +30,6 @@ import org.apache.sling.api.resource.SyntheticResource;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
-import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.components.ComponentContext;
 import com.day.cq.wcm.commons.WCMUtils;
@@ -111,7 +112,7 @@ abstract class AbstractComponentPropertyResolverTest {
     Resource resource = context.create().resource("/content/r1",
         PROPERTY_RESOURCE_TYPE, component.getPath());
     Resource subresource1 = context.create().resource(resource, "subresource1",
-        JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED);
+        JCR_PRIMARYTYPE, NT_UNSTRUCTURED);
     Resource subresource2 = context.create().resource(subresource1, "subresource2");
 
     ComponentPropertyResolver underTest = getComponentPropertyResolver(subresource2, true);
@@ -128,7 +129,7 @@ abstract class AbstractComponentPropertyResolverTest {
     Resource resource = context.create().resource("/content/r1",
         PROPERTY_RESOURCE_TYPE, component1.getPath());
     Resource subresource1 = context.create().resource(resource, "subresource1",
-        JcrConstants.JCR_PRIMARYTYPE, JcrConstants.NT_UNSTRUCTURED);
+        JCR_PRIMARYTYPE, NT_UNSTRUCTURED);
     Resource subresource2 = context.create().resource(subresource1, "subresource2");
 
     TypeOverwritingResourceWrapper resourceWrapper = new TypeOverwritingResourceWrapper(subresource2,
@@ -362,7 +363,7 @@ abstract class AbstractComponentPropertyResolverTest {
 
   @Test
   void testSyntheticResourceWithoutResourceType() {
-    Resource resource = new SyntheticResource(context.resourceResolver(), "/content/r1", null);
+    Resource resource = new SyntheticResource(context.resourceResolver(), "/content/r1", NT_UNSTRUCTURED);
 
     ComponentPropertyResolver underTest = getComponentPropertyResolver(resource);
     assertNull(underTest.get("prop1", String.class));
