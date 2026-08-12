@@ -32,7 +32,6 @@ import org.junit.jupiter.api.Test;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.components.ComponentContext;
-import com.day.cq.wcm.commons.WCMUtils;
 
 import io.wcm.sling.commons.resource.ImmutableValueMap;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -288,7 +287,7 @@ abstract class AbstractComponentPropertyResolverTest {
         PROPERTY_RESOURCE_TYPE, component.getPath());
     context.currentResource(resource);
 
-    ComponentContext wcmComponentContext = WCMUtils.getComponentContext(context.request());
+    ComponentContext wcmComponentContext = (ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME);
     ComponentPropertyResolver underTest = getComponentPropertyResolver(wcmComponentContext)
       .pagePropertiesResolution(ComponentPropertyResolution.RESOLVE_INHERIT)
       .contentPolicyResolution(ComponentPropertyResolution.RESOLVE)

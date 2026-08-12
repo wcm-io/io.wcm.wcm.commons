@@ -37,7 +37,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.components.ComponentContext;
-import com.day.cq.wcm.commons.WCMUtils;
 
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -95,7 +94,7 @@ class EditableTemplateTest {
     Page page = context.create().page("/content/mypage");
     Resource resource = context.create().resource(page, "resource1");
     context.currentResource(resource);
-    assertFalse(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertFalse(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertFalse(model.isEditRestricted());
@@ -106,7 +105,7 @@ class EditableTemplateTest {
     Page page = context.create().page("/content/mypage", "/apps/app1/templates/invalidTemplate");
     Resource resource = context.create().resource(page, "resource1");
     context.currentResource(resource);
-    assertFalse(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertFalse(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertFalse(model.isEditRestricted());
@@ -117,7 +116,7 @@ class EditableTemplateTest {
     Page page = context.create().page("/content/mypage", classicTemplate.getPath());
     Resource resource = context.create().resource(page, "resource1");
     context.currentResource(resource);
-    assertFalse(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertFalse(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertFalse(model.isEditRestricted());
@@ -126,7 +125,7 @@ class EditableTemplateTest {
   @Test
   void testResourceInEditableTemplate_EditableComponentInitial() {
     context.currentResource(editableComponentInitial);
-    assertFalse(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertFalse(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertFalse(model.isEditRestricted());
@@ -135,7 +134,7 @@ class EditableTemplateTest {
   @Test
   void testResourceInEditableTemplate_EditableComponentStructure() {
     context.currentResource(editableComponentStructure);
-    assertFalse(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertFalse(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertFalse(model.isEditRestricted());
@@ -144,7 +143,7 @@ class EditableTemplateTest {
   @Test
   void testResourceInEditableTemplate_LockedComponentStructure() {
     context.currentResource(lockedComponentStructure);
-    assertFalse(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertFalse(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertFalse(model.isEditRestricted());
@@ -155,7 +154,7 @@ class EditableTemplateTest {
     Page page = context.create().page("/content/mypage", editableTemplate.getPath());
     Resource resource = page.getContentResource(editableComponentStructure.getName());
     context.currentResource(resource);
-    assertFalse(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertFalse(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertFalse(model.isEditRestricted());
@@ -166,7 +165,7 @@ class EditableTemplateTest {
     Page page = context.create().page("/content/mypage", editableTemplate.getPath());
     Resource resource = context.create().resource(page, lockedComponentStructure.getName());
     context.currentResource(resource);
-    assertTrue(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertTrue(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertTrue(model.isEditRestricted());
@@ -177,7 +176,7 @@ class EditableTemplateTest {
     Page page = context.create().page("/content/mypage", editableTemplate.getPath());
     Resource resource = context.create().resource(page, "resource1");
     context.currentResource(resource);
-    assertFalse(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertFalse(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertFalse(model.isEditRestricted());
@@ -188,7 +187,7 @@ class EditableTemplateTest {
     Page page = context.create().page("/content/mypage", editableTemplate.getPath());
     context.currentPage(page);
     context.currentResource(editableComponentStructure);
-    assertFalse(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertFalse(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertFalse(model.isEditRestricted());
@@ -199,7 +198,7 @@ class EditableTemplateTest {
     Page page = context.create().page("/content/mypage", editableTemplate.getPath());
     context.currentPage(page);
     context.currentResource(lockedComponentStructure);
-    assertTrue(isEditRestricted(WCMUtils.getComponentContext(context.request())));
+    assertTrue(isEditRestricted((ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
 
     EditableTemplateSupport model = AdaptTo.notNull(context.request(), EditableTemplateSupport.class);
     assertTrue(model.isEditRestricted());
